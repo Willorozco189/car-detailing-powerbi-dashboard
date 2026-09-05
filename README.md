@@ -44,7 +44,28 @@
 * **Version Control:** Git & GitHub
 
 ---
+## 🧹 Excel Data Preparation
 
+Raw service and expense records were tracked in separate monthly Excel files (`2026_05_Service_Book.xlsx` through `2026_08_Service_Book.xlsx`, plus monthly Expenses files) before being combined into a single working dataset (`Dashboard_Data.xlsx`).
+
+**Issues found and fixed while combining the files:**
+- **Column name mismatch:** One monthly file had a column labeled differently than the others (`Car` vs. `Car / Service`), which caused that entire month's Service Book data to return null values when merged. Renamed columns to match before combining.
+- **Null value troubleshooting:** Traced the null values back to the column mismatch above rather than a data entry issue, and verified all four months merged correctly afterward.
+- **Combined all Service Book files into one table and all Expenses files into one table**, rather than transforming everything in a single query — merging both categories at once caused errors, so I processed Service Book and Expenses as two separate transformations.
+
+**Known limitation (not yet cleaned):** Some car entries retain inconsistent formatting from manual data entry (extra trailing spaces, and one recurring misspelling of "Mercedes" as "Mercedez"). These don't affect the aggregate numbers shown on the dashboard, but would be a next step for a cleaner production dataset.
+
+📄 Example raw file: [2026_08_Service_Book.xlsx](2026_08_Service_Book.xlsx)
+📄 Combined working file: [Dashboard_Data.xlsx](Dashboard_Data.xlsx)
+
+## 🔄 Power Query Transformations
+
+Within Power BI's Power Query Editor (Transform Data), I:
+- Used "Combine Files from Folder" to append the four monthly Service Book files into a single table, and separately for the two monthly Expenses files — each row is tagged with a `Source.Name` column showing which monthly file it came from.
+- Diagnosed and resolved the column-mismatch null issue described above before finalizing the merge.
+- Processed Service Book and Expenses as two independent query transformations after combining them together caused errors.
+ 
+---
 ## 🗂️ Step-by-Step Process
 
 ### Step 1: Building the Data Model
