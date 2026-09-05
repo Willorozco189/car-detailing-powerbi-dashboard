@@ -6,7 +6,7 @@
 
 ## 🎥 Project Walkthrough
 [![Project Video Walkthrough](https://img.shields.io/badge/Watch-Video%20Walkthrough-blue?style=for-the-badge&logo=loom)](REPLACE_WITH_YOUR_VIDEO_URL)
-*(A short walkthrough of the dashboard, my analysis process, and two data-quality issues I caught and corrected along the way.)*
+*(A short walkthrough of the dashboard, my analysis process, and the data-quality issues I caught and corrected along the way.)*
 
 ---
 
@@ -15,12 +15,19 @@
 ```text
 +---------------------------------------------------------------+
 |                      1. DATA SOURCE                            |
-|         Manually logged Service Book & Expenses (Excel)        |
+|   Monthly Excel files: Service Book (May-Aug), Expenses (May-June) |
 +-------------------------------+-------------------------------+
                                 |
                                 v
 +---------------------------------------------------------------+
-|                  2. POWER BI DATA MODELING                     |
+|                  2. EXCEL / POWER QUERY CLEANUP                |
+|     - Combined monthly files into one table (per category)     |
+|     - Fixed column-name mismatch causing null values           |
++-------------------------------+-------------------------------+
+                                |
+                                v
++---------------------------------------------------------------+
+|                  3. POWER BI DATA MODELING                     |
 |     - Two tables: Service Book, Expenses                       |
 |     - Column data-type correction (Text → Whole Number)        |
 |     - Aggregation review (Sum vs. Average vs. Count)            |
@@ -28,7 +35,7 @@
                                 |
                                 v
 +---------------------------------------------------------------+
-|                3. TWO-PAGE POWER BI DASHBOARD                  |
+|                4. TWO-PAGE POWER BI DASHBOARD                  |
 |   +-----------------------+  +----------------------------+   |
 |   | Page 1: Executive     |  | Page 2: Service & Client    |   |
 |   | Summary (KPIs, trend) |  | Detail Breakdown            |   |
@@ -44,6 +51,7 @@
 * **Version Control:** Git & GitHub
 
 ---
+
 ## 🧹 Excel Data Preparation
 
 Raw service and expense records were tracked in separate monthly Excel files (`2026_05_Service_Book.xlsx` through `2026_08_Service_Book.xlsx`, plus monthly Expenses files) before being combined into a single working dataset (`Dashboard_Data.xlsx`).
@@ -64,13 +72,14 @@ Within Power BI's Power Query Editor (Transform Data), I:
 - Used "Combine Files from Folder" to append the four monthly Service Book files into a single table, and separately for the two monthly Expenses files — each row is tagged with a `Source.Name` column showing which monthly file it came from.
 - Diagnosed and resolved the column-mismatch null issue described above before finalizing the merge.
 - Processed Service Book and Expenses as two independent query transformations after combining them together caused errors.
- 
+
 ---
+
 ## 🗂️ Step-by-Step Process
 
 ### Step 1: Building the Data Model
 * **The Concept:** Structured two related tables — Service Book (client, car, revenue, duration) and Expenses (item, cost, category) — to support both revenue and cost analysis.
-* **Execution:** Loaded manually tracked business records into Power BI and built relationships between service and expense data by month.
+* **Execution:** Loaded the combined monthly records into Power BI and built relationships between service and expense data by month.
 
 ### Step 2: Catching Data Quality Issues
 * **The Concept:** Before trusting any visual, I checked whether each field's aggregation actually matched what I intended to measure.
@@ -93,4 +102,6 @@ Within Power BI's Power Query Editor (Transform Data), I:
 ---
 
 ## 📁 Files
-[Power BI Dashboard.pbix](Power%20BI%20Dashboard.pbix) — the full Power BI file
+- [Power_BI_Dashboard.pbix](Power_BI_Dashboard.pbix) — the full Power BI file
+- [Dashboard_Data.xlsx](Dashboard_Data.xlsx) — combined working dataset (post Power Query merge)
+- [2026_08_Service_Book.xlsx](2026_08_Service_Book.xlsx) — example raw monthly source file
