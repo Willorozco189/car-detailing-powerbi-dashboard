@@ -1,100 +1,75 @@
-# Wealth Management Client Retention & Operational Efficiency Dashboard
+# 🚗 Car Detailing Business Performance Dashboard
 
-> An end-to-end data analytics project built to track wealth management assets, identify client churn risk factors, and optimize service support operations using SQL, Excel, and Power BI. Designed to mirror real-world financial analytics use cases focused on client experience and operational excellence.
+> An end-to-end analytics project tracking revenue, expenses, and client behavior for my own car detailing business — built in Power BI to practice turning raw operational data into real business decisions.
 
 ---
 
 ## 🎥 Project Walkthrough
-[![Project Video Walkthrough](https://img.shields.io/badge/Watch-Loom%20Video%20Walkthrough-blue?style=for-the-badge&logo=loom)](Insert_Loom_Video_Link_Here)  
-*(A 2-minute video demonstration covering the interactive Power BI dashboard, data model architecture, and underlying SQL querying logic.)*
+[![Project Video Walkthrough](https://img.shields.io/badge/Watch-Video%20Walkthrough-blue?style=for-the-badge&logo=loom)](REPLACE_WITH_YOUR_VIDEO_URL)
+*(A short walkthrough of the dashboard, my analysis process, and two data-quality issues I caught and corrected along the way.)*
 
 ---
 
 ## 📊 Project Architecture & Data Flow
+
 ```text
 +---------------------------------------------------------------+
-|                      1. DATA SOURCES                          |
-|   [ Dim_Clients.csv ]   [ Fact_Transactions ]   [ Support.csv ]|
+|                      1. DATA SOURCE                            |
+|         Manually logged Service Book & Expenses (Excel)        |
 +-------------------------------+-------------------------------+
                                 |
                                 v
 +---------------------------------------------------------------+
-|                  2. DATA WRANGLING & SQL                      |
-|     - Excel Power Query (Data cleaning, type validation)      |
-|     - SQL Database (Joins, Aggregations, Window Functions)    |
+|                  2. POWER BI DATA MODELING                     |
+|     - Two tables: Service Book, Expenses                       |
+|     - Column data-type correction (Text → Whole Number)        |
+|     - Aggregation review (Sum vs. Average vs. Count)            |
 +-------------------------------+-------------------------------+
                                 |
                                 v
 +---------------------------------------------------------------+
-|                   3. POWER BI MODELING                        |
-|     - Star Schema (1-to-Many Relationships)                   |
-|     - DAX Measures (Total AUM, Churn Rate, Resolution Time)   |
-+-------------------------------+-------------------------------+
-                                |
-                                v
-+---------------------------------------------------------------+
-|                4. INTERACTIVE POWER BI DASHBOARD              |
+|                3. TWO-PAGE POWER BI DASHBOARD                  |
 |   +-----------------------+  +----------------------------+   |
-|   | Page 1: Executive     |  | Page 2: Churn Risk Matrix  |   |
-|   | Overview & AUM        |  | & Satisfaction Correlation |   |
+|   | Page 1: Executive     |  | Page 2: Service & Client    |   |
+|   | Summary (KPIs, trend) |  | Detail Breakdown            |   |
 |   +-----------------------+  +----------------------------+   |
-|   +-------------------------------------------------------+   |
-|   | Page 3: Operational Efficiency & Ticket Bottlenecks   |   |
-|   +-------------------------------------------------------+   |
 +---------------------------------------------------------------+
+```
 
 ---
 
 ## 🛠️ Tech Stack & Tools
-* **Data Cleansing & Prototyping:** Microsoft Excel (Power Query, Dynamic Arrays)
-* **Data Extraction & Transformation:** SQL (PostgreSQL / SQLite - Joins, CTEs, Window Functions)
-* **Data Visualization & Modeling:** Power BI (Star Schema, DAX, Custom KPI Cards)
+* **Data Entry & Source Records:** Microsoft Excel
+* **Data Modeling & Visualization:** Power BI Desktop (data types, aggregations, relationships)
 * **Version Control:** Git & GitHub
 
 ---
 
-## 🗂️ Complete Step-by-Step Project Documentation
+## 🗂️ Step-by-Step Process
 
-### Step 1: Data Architecture & Generation
-* **The Concept:** Designed a relational **Star Schema** separating descriptive client attributes from transactional and support event logs to ensure optimal database performance.
-* **Execution:** Generated mock financial and customer service datasets simulating a wealth management portfolio of 500+ clients across multiple investment tiers (Bronze, Silver, Gold, Platinum).
-* *[Screenshot Placeholder: Excel Data Model / Table Preview]*
+### Step 1: Building the Data Model
+* **The Concept:** Structured two related tables — Service Book (client, car, revenue, duration) and Expenses (item, cost, category) — to support both revenue and cost analysis.
+* **Execution:** Loaded manually tracked business records into Power BI and built relationships between service and expense data by month.
 
-### Step 2: SQL Data Extraction & Transformation
-* **The Concept:** Loaded relational CSVs into a local database environment to test querying logic and pre-aggregate data.
-* **Execution:** Wrote robust analytical queries utilizing `JOIN` operations, `GROUP BY`, and window functions. Below is an example script used to evaluate asset sizes across client tiers:
-  ```sql
-  SELECT 
-      c.Investment_Tier,
-      COUNT(DISTINCT c.Client_ID) AS Total_Clients,
-      AVG(t.Asset_Amount) AS Avg_Transaction_Size
-  FROM Dim_Clients c
-  JOIN Fact_Transactions t ON c.Client_ID = t.Client_ID
-  GROUP BY c.Investment_Tier;
+### Step 2: Catching Data Quality Issues
+* **The Concept:** Before trusting any visual, I checked whether each field's aggregation actually matched what I intended to measure.
+* **Execution:** Found that my "Detail Duration" column was stored as **Text**, silently defaulting every table to a **Count** aggregation instead of Average — this made a low-duration car model appear to have the longest service time. I corrected the column's data type and re-verified every chart built on it. I also caught a **Sum vs. Average** mismatch on a Revenue-by-Car-Type chart that had flipped my top-performing vehicle type.
 
-Step 3: Data Modeling & DAX in Power BI
-The Concept: Connected raw sources into Power BI and established relational integrity.
+### Step 3: Designing the Two-Page Dashboard
+* **The Concept:** Split the report into an Executive Summary (KPIs + headline trends for a quick read) and a Detail page (granular breakdowns for anyone who wants to dig deeper).
+* **Execution:** Built KPI cards for Total Revenue and Total Cost, a monthly revenue trend chart, and a cost breakdown by item group on the summary page; car model, client, and package-level breakdowns on the detail page.
 
-Execution: Configured a robust 1-to-Many (1:*) relationship model linking Dim_Clients to fact tables. Developed core DAX measures to drive dynamic reporting:
+---
 
-Total AUM = SUM(Fact_Transactions[Asset_Amount])
+## 🚀 Key Business Insights & Decisions
 
-Churn Rate % = DIVIDE(CALCULATE(DISTINCTCOUNT(Dim_Clients[Client_ID]), Dim_Clients[Status] = "Churned"), DISTINCTCOUNT(Dim_Clients[Client_ID]), 0)
+* **Seasonal revenue drop:** Revenue fell roughly 70% from May to August as summer ended — I'd test a back-to-school promotion to smooth out the dip.
+* **Profitable from month one:** Generated $2,000 in revenue against $1,383 in expenses in my first month — a ~31% margin right out of the gate.
+* **No car type drives repeat business:** My most-serviced model (Nissan) is driven entirely by first-time clients — retention should be built around the client relationship, not the vehicle.
+* **Duration doesn't predict revenue:** Several car models share the same average service time, but revenue for those varies by up to $70 per service — pricing follows vehicle size and package tier, not time spent.
+* **Volume ≠ value:** Sedans are my highest-volume car type but my lowest average revenue ($115.60); Minivans earn the most per service ($150) despite low volume — worth shifting some marketing toward minivan owners.
 
-Avg Resolution Days = AVERAGEEX(Fact_Support_Tickets, Fact_Support_Tickets[Date_Closed] - Fact_Support_Tickets[Date_Opened])
+---
 
-Step 4: Executive Dashboard Delivery
-Page 1 (Executive Overview): Tracks total Assets Under Management, account tier breakdown, and high-level growth trends.
-
-Page 2 (Client Churn Risk): Analyzes the correlation between unresolved support tickets and account attrition to flag high-risk accounts.
-
-Page 3 (Operational Efficiency): Highlights support channel bottlenecks and average ticket resolution times to guide team resource allocation.
-
-[Screenshot Placeholder: Final Power BI Dashboard Views]
-
-🚀 Key Business Insights & Outcomes
-The Support Bottleneck: Clients with support tickets taking longer than 5 business days to resolve exhibited a 35% higher churn rate, proving that operational response speed directly protects client retention.
-
-Channel Optimization: Online self-service channels resolved tier-1 issues 40% faster than traditional advisor phone queues, freeing up bandwidth for high-value client advisory work.
-
-Asset Concentration: Platinum tier clients drive 60% of total Assets Under Management (AUM), underscoring the need for priority routing on support escalations.
+## 📁 Files
+- `Power_BI_Dashboard.pbix` — the full Power BI file
