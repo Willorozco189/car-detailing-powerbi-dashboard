@@ -5,7 +5,9 @@
 ---
 
 ## 🎥 Project Walkthrough
-[![Project Video Walkthrough](https://img.shields.io/badge/Watch-Video%20Walkthrough-blue?style=for-the-badge&logo=loom)](REPLACE_WITH_YOUR_VIDEO_URL)
+[![Watch the video](https://placehold.co/1280x720/1a1a2e/ffffff?text=Watch+the+Demo)](https://loom.com/share/8569c6a5439146688054d4db0706df03)
+
+🎥 [Watch the full walkthrough](https://loom.com/share/8569c6a5439146688054d4db0706df03)
 *(A short walkthrough of the dashboard, my analysis process, and the data-quality issues I caught and corrected along the way.)*
 
 ---
