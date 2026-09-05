@@ -5,9 +5,9 @@
 ---
 
 ## 🎥 Project Walkthrough
-[![Watch the video](https://placehold.co/1280x720/1a1a2e/ffffff?text=Watch+the+Demo)](https://loom.com/share/8569c6a5439146688054d4db0706df03)
+[![Watch the video](https://placehold.co/1280x720/1a1a2e/ffffff?text=Watch+the+Demo)](https://www.loom.com/share/1aae5f1973dc4a789c6d5817cfc5300e)
 
-🎥 [Watch the full walkthrough](https://loom.com/share/8569c6a5439146688054d4db0706df03)
+🎥 [Watch the full walkthrough](https://www.loom.com/share/1aae5f1973dc4a789c6d5817cfc5300e)
 *(A short walkthrough of the dashboard, my analysis process, and the data-quality issues I caught and corrected along the way.)*
 
 ---
