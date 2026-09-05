@@ -63,8 +63,8 @@ Raw service and expense records were tracked in separate monthly Excel files (`2
 
 **Known limitation (not yet cleaned):** Some car entries retain inconsistent formatting from manual data entry (extra trailing spaces, and one recurring misspelling of "Mercedes" as "Mercedez"). These don't affect the aggregate numbers shown on the dashboard, but would be a next step for a cleaner production dataset.
 
-📄 Example raw file: [2026_08_Service_Book.xlsx](2026_08_Service_Book.xlsx)
-📄 Combined working file: [Dashboard_Data.xlsx](Dashboard_Data.xlsx)
+📄 Example raw file: [2026_08_Service_Book.xlsx](2026_08_Service%20Book.xlsx)
+📄 Combined working file: [Dashboard_Data.xlsx](Dashboard%20Data.xlsx)
 
 ## 🔄 Power Query Transformations
 
@@ -102,6 +102,6 @@ Within Power BI's Power Query Editor (Transform Data), I:
 ---
 
 ## 📁 Files
-- [Power_BI_Dashboard.pbix](Power_BI_Dashboard.pbix) — the full Power BI file
-- [Dashboard_Data.xlsx](Dashboard_Data.xlsx) — combined working dataset (post Power Query merge)
-- [2026_08_Service_Book.xlsx](2026_08_Service_Book.xlsx) — example raw monthly source file
+[2026_08_Service_Book.xlsx](2026_08_Service%20Book.xlsx)
+[Dashboard_Data.xlsx](Dashboard%20Data.xlsx)
+[Power_BI_Dashboard.pbix](Power%20BI%20Dashboard.pbix)
