@@ -72,4 +72,4 @@
 ---
 
 ## 📁 Files
-- `Power_BI_Dashboard.pbix` — the full Power BI file
+- `Power BI Dashboard.pbix` — the full Power BI file
