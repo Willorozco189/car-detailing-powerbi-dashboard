@@ -102,6 +102,6 @@ Within Power BI's Power Query Editor (Transform Data), I:
 ---
 
 ## 📁 Files
-[2026_08_Service_Book.xlsx](2026_08_Service%20Book.xlsx)
-[Dashboard_Data.xlsx](Dashboard%20Data.xlsx)
-[Power_BI_Dashboard.pbix](Power%20BI%20Dashboard.pbix)
+- [Power_BI_Dashboard.pbix](Power%20BI%20Dashboard.pbix) — the full Power BI file
+- [Dashboard_Data.xlsx](Dashboard%20Data.xlsx) — combined working dataset (post Power Query merge)
+- [2026_08_Service_Book.xlsx](2026_08_Service%20Book.xlsx) — example raw monthly source file
